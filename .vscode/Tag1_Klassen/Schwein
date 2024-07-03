@@ -1,0 +1,43 @@
+class Schwein {
+    #name = "nobody";
+    #gewicht = 0;
+
+
+    constructor(parameter) {
+        this.name = parameter.schweinename || "Nobody";
+        this.#setGewicht( parameter.gewicht || 10);
+    }
+
+    get name() {
+        return this.#name;
+    }
+
+    set name(value) {
+        if(value === "Elsa") throw "Upps";
+        this.#name = value;
+    }
+
+    get gewicht() {
+       
+        return this.#gewicht;
+    }
+
+    #setGewicht(neuesGewicht) {
+        if(neuesGewicht < 10)  throw "Aua";
+        this.#gewicht = neuesGewicht;
+    }
+
+    fuettern() {
+        this.#setGewicht(this.gewicht + 1);
+    }
+
+    toString() {
+        return `Name = ${this.name}, Gewicht = ${this.gewicht}`
+    }
+}
+
+(function (){
+    let piggy = new Schwein({ schweinename: "Miss Piggy"});
+    piggy.fuettern();
+    console.log(piggy.toString());
+})();

@@ -37,7 +37,13 @@ class Schwein {
 }
 
 (function (){
+
+    let x = 0;
     let piggy = new Schwein({ schweinename: "Miss Piggy"});
+    
+    let babe = piggy;
     piggy.fuettern();
-    console.log(piggy.toString());
+    console.log(babe.toString());
+    console.log(babe.toString());
+    console.log(babe.toString());
 })();

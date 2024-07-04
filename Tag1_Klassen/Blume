@@ -1,0 +1,34 @@
+class Blume  {
+    name = "Blume";
+    laenge = 1;
+    static #counter = 0;
+    
+    constructor() {
+        Blume.#counter ++;
+    }
+
+    static get counter() {
+        
+        return Blume.#counter;
+    }
+
+    toString() {
+        return `Name = ${this.name}, Laenge = ${this.laenge}`;
+    }
+}
+
+
+
+
+
+
+function foo (){
+    console.log(Blume.counter);
+    let sonnenblume = new Blume();
+    console.log(Blume.counter);
+    sonnenblume.name="Sonnenblume";
+    sonnenblume.laenge = -100;
+    console.log(sonnenblume.toString());
+};
+
+foo();

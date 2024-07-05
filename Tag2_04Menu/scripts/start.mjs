@@ -5,7 +5,7 @@ import {MenuBar, Menu, MenuItem} from "./modules/menu.mjs"
 document.addEventListener("DOMContentLoaded", init) ;
 
 function init() {
-
+try {
     let menu;
     let menuItem;
 
@@ -44,14 +44,16 @@ function init() {
     menuItem = new MenuItem("Offline", (e)=>alert("offline"));
     menu.addMenuItem(menuItem);
 
-    menuItem = new MenuItem("Telefonjoker", (e)=>alert("telefonjoken"));
+    menuItem = new MenuItem("Telefonjoker", (e)=>alert("telefonjoker"));
     menu.addMenuItem(menuItem);
 
 
 
     menuBar.addMenu(menu);
 
-    
+} catch(error) {
+    console.log(error);
+}
 
 
 

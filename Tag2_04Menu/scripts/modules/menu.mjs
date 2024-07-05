@@ -8,28 +8,71 @@
         public methods (name, parameter, rueckgabe, verhalten im Fehlerfall, Fachliche Beschreibung) 
 */
 class MenuBar {
+    #ulElement = undefined;
+
     constructor(id) {
-        console.log("Ctor MenuBar")
+        
+        let divElement = document.querySelector(id);
+        if(divElement)
+        {
+            this.#ulElement = document.createElement("UL");
+            divElement.append(this.#ulElement);
+        } else {
+            throw "Div Element nicht gefunden";
+        }
+
     }
 
-    addMenu(menu){
-        console.log("AddMenu")
+    addMenu(menu) {
+        this.#ulElement.appendChild(menu.liElement);
+        this.#ulElement.appendChild(menu.ulElement);
     }
 }
 
 class Menu {
+    #ulElement = undefined;
+    #liElement = undefined;
     constructor(label) {
-        console.log("Ctor Menu " + label)
+
+        this.#ulElement = document.createElement("UL");
+        this.#ulElement.style.display="none";
+
+        let me = this;
+
+        this.#liElement = document.createElement("LI");
+        this.#liElement.appendChild(document.createTextNode(label));
+        this.#liElement.addEventListener(
+                "click", 
+                function(e){
+                    this.parentNode.querySelectorAll("UL").forEach(element => {
+                        element.style.display="none";
+                    });
+                    me.ulElement.style.display="";
+                }
+        );
+    }
+    addMenuItem(menuItem) {
+        this.ulElement.appendChild(menuItem.liElement);
+        
+    }
+    get liElement () {
+        return this.#liElement;
+    }
+    get ulElement () {
+        return this.#ulElement;
     }
 
-    addMenuItem(menuItem) {
-        console.log("AddMenuItem")
-    }
 }
 
 class MenuItem {
+    #liElement = undefined;
     constructor(label, callback) {
-        console.log("Ctor MenuItem " + label)
+        this.#liElement = document.createElement("LI");
+        this.#liElement.appendChild(document.createTextNode(label));
+        this.#liElement.addEventListener("click", callback);
+    }
+    get liElement () {
+        return this.#liElement;
     }
 }
 
